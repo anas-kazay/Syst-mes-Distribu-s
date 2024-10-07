@@ -7,4 +7,5 @@ import anas.kazay.bank_account_service.entities.BankAccount;
 public interface AccountService {
      BankAccountResponseDTO createAccount(BankAccountRequestDTO bankAccountRequestDTO);
 
+     BankAccountResponseDTO updateAccount(String id, BankAccountRequestDTO bankAccountRequestDTO);
 }
