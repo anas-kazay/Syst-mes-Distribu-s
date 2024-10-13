@@ -12,6 +12,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.List;
+
 @RestController
 public class BillingRestController {
     private BillingRepository billRepository;
@@ -39,5 +41,10 @@ public class BillingRestController {
             pi.setProduct(product);
         });
         return bill;
+    }
+
+    @GetMapping(path = "/bills/{customerId}")
+    public List<Bill> getBillsByCustomerId(@PathVariable Long customerId) {
+        return billRepository.findByCustomerID(customerId);
     }
 }

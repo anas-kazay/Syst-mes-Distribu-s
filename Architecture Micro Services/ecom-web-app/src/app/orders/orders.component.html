@@ -1,0 +1,33 @@
+<div class="container">
+  <table class="table" *ngIf="orders">
+    <thead>
+      <tr>
+        <th>Order ID</th>
+        <th>Billing Date</th>
+        <th>Product ID</th>
+        <th>Quantity</th>
+        <th>Price</th>
+      </tr>
+    </thead>
+    <tbody>
+      <ng-container *ngFor="let order of orders">
+        <!-- First row for the first productItem -->
+        <tr>
+          <td [attr.rowspan]="order.productItems.length">{{ order.id }}</td>
+          <td [attr.rowspan]="order.productItems.length">
+            {{ order.billingDate | date : "short" }}
+          </td>
+          <td>{{ order.productItems[0].productID }}</td>
+          <td>{{ order.productItems[0].quantity }}</td>
+          <td>{{ order.productItems[0].price | currency }}</td>
+        </tr>
+        <!-- Remaining productItems in the order -->
+        <tr *ngFor="let item of order.productItems.slice(1)">
+          <td>{{ item.productID }}</td>
+          <td>{{ item.quantity }}</td>
+          <td>{{ item.price | currency }}</td>
+        </tr>
+      </ng-container>
+    </tbody>
+  </table>
+</div>
